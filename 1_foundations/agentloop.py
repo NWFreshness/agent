@@ -12,7 +12,7 @@ def show(text):
         print(text)
 
 openai = OpenAI()
-
+#ollama = OpenAI(base_url='http://localhost:11434/v1', api_key='ollama')
 todos = []
 completed = []
 
@@ -95,6 +95,7 @@ def handle_tool_calls(tool_calls):
 def loop(messages):
     done = False
     while not done:
+        #response = ollama.chat.completions.create(model="llama3.2", messages=messages, tools=tools)
         response = openai.chat.completions.create(model="gpt-5.2", messages=messages, tools=tools, reasoning_effort="none")
         finish_reason = response.choices[0].finish_reason
         if finish_reason=="tool_calls":
