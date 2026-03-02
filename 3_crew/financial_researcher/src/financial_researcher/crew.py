@@ -1,7 +1,7 @@
 # src/financial_researcher/crew.py
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from crewai_tools import SerperDevTool
+from crewai_tools import SerperDevTool, FileWriterTool
 
 @CrewBase
 class ResearchCrew():
@@ -19,7 +19,8 @@ class ResearchCrew():
     def analyst(self) -> Agent:
         return Agent(
             config=self.agents_config['analyst'],
-            verbose=True
+            verbose=True,
+            tools=[FileWriterTool()]
         )
 
     @task
