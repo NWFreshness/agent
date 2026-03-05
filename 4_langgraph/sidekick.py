@@ -16,7 +16,7 @@ from datetime import datetime
 
 load_dotenv(override=True)
 
-
+#structured output for the state
 class State(TypedDict):
     messages: Annotated[List[Any], add_messages]
     success_criteria: str
@@ -25,6 +25,7 @@ class State(TypedDict):
     user_input_needed: bool
 
 
+#structured output for the evaluator    
 class EvaluatorOutput(BaseModel):
     feedback: str = Field(description="Feedback on the assistant's response")
     success_criteria_met: bool = Field(description="Whether the success criteria have been met")
@@ -33,6 +34,7 @@ class EvaluatorOutput(BaseModel):
     )
 
 
+#Sidekick class
 class Sidekick:
     def __init__(self):
         self.worker_llm_with_tools = None
